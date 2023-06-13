@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 8 feb 2023 11:39:24 by Hibernate Tools 4.3.6.Final -->
+<hibernate-mapping>
+    <class name="entidades.Clienteproductos" table="clienteproductos" catalog="empresabbdd" optimistic-lock="version">
+        <composite-id name="id" class="entidades.ClienteproductosId">
+            <key-property name="cpProId" type="java.lang.Integer">
+                <column name="cp_pro_id" />
+            </key-property>
+            <key-property name="cpCliId" type="java.lang.Integer">
+                <column name="cp_cli_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="clientes" class="entidades.Clientes" update="false" insert="false" fetch="select">
+            <column name="cp_cli_id" />
+        </many-to-one>
+        <many-to-one name="productos" class="entidades.Productos" update="false" insert="false" fetch="select">
+            <column name="cp_pro_id" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

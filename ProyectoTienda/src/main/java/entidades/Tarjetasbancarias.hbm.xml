@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 8 feb 2023 11:39:24 by Hibernate Tools 4.3.6.Final -->
+<hibernate-mapping>
+    <class name="entidades.Tarjetasbancarias" table="tarjetasbancarias" catalog="empresabbdd" optimistic-lock="version">
+        <id name="TId" type="java.lang.Integer">
+            <column name="t_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="clientes" class="entidades.Clientes" fetch="select">
+            <column name="t_clienteid" />
+        </many-to-one>
+        <property name="TNumTarjeta" type="string">
+            <column name="t_numTarjeta" length="16" not-null="true" unique="true" />
+        </property>
+        <property name="TNombreTitular" type="string">
+            <column name="t_nombreTitular" length="100" not-null="true" />
+        </property>
+        <property name="TFechaCaducidad" type="date">
+            <column name="t_fechaCaducidad" length="10" not-null="true" />
+        </property>
+        <property name="TCvv" type="int">
+            <column name="t_CVV" not-null="true" />
+        </property>
+        <set name="comprasrealizadases" table="comprasrealizadas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="comp_pro_id" />
+            </key>
+            <one-to-many class="entidades.Comprasrealizadas" />
+        </set>
+    </class>
+</hibernate-mapping>

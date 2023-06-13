@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 8 feb 2023 11:39:24 by Hibernate Tools 4.3.6.Final -->
+<hibernate-mapping>
+    <class name="entidades.Carritos" table="carritos" catalog="empresabbdd" optimistic-lock="version">
+        <id name="carId" type="java.lang.Integer">
+            <column name="car_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="clientes" class="entidades.Clientes" fetch="select">
+            <column name="car_cli_id" />
+        </many-to-one>
+        <many-to-one name="productos" class="entidades.Productos" fetch="select">
+            <column name="car_pro_id" />
+        </many-to-one>
+        <property name="carNumprod" type="int">
+            <column name="car_numprod" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

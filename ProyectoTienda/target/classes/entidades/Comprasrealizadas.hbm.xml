@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 8 feb 2023 11:39:24 by Hibernate Tools 4.3.6.Final -->
+<hibernate-mapping>
+    <class name="entidades.Comprasrealizadas" table="comprasrealizadas" catalog="empresabbdd" optimistic-lock="version">
+        <id name="compId" type="java.lang.Integer">
+            <column name="comp_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="clientes" class="entidades.Clientes" fetch="select">
+            <column name="comp_t_id" />
+        </many-to-one>
+        <many-to-one name="productos" class="entidades.Productos" fetch="select">
+            <column name="comp_cli_id" />
+        </many-to-one>
+        <many-to-one name="tarjetasbancarias" class="entidades.Tarjetasbancarias" fetch="select">
+            <column name="comp_pro_id" />
+        </many-to-one>
+        <property name="compFechaCompra" type="date">
+            <column name="comp_fechaCompra" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

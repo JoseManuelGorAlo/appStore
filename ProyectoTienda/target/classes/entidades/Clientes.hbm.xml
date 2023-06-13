@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 8 feb 2023 11:39:24 by Hibernate Tools 4.3.6.Final -->
+<hibernate-mapping>
+    <class name="entidades.Clientes" table="clientes" catalog="empresabbdd" optimistic-lock="version">
+        <id name="cliId" type="java.lang.Integer">
+            <column name="cli_id" />
+            <generator class="identity" />
+        </id>
+        <property name="cliNombre" type="string">
+            <column name="cli_nombre" length="100" not-null="true" />
+        </property>
+        <property name="cliApellido1" type="string">
+            <column name="cli_apellido1" length="100" not-null="true" />
+        </property>
+        <property name="cliApellido2" type="string">
+            <column name="cli_apellido2" length="100" not-null="true" />
+        </property>
+        <property name="cliFechaNacimiento" type="date">
+            <column name="cli_fechaNacimiento" length="10" not-null="true" />
+        </property>
+        <property name="cliEmail" type="string">
+            <column name="cli_email" length="100" not-null="true" unique="true" />
+        </property>
+        <property name="cliPwd" type="string">
+            <column name="cli_pwd" length="100" not-null="true" />
+        </property>
+        <set name="carritoses" table="carritos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="car_cli_id" />
+            </key>
+            <one-to-many class="entidades.Carritos" />
+        </set>
+        <set name="clienteproductoses" table="clienteproductos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cp_cli_id" />
+            </key>
+            <one-to-many class="entidades.Clienteproductos" />
+        </set>
+        <set name="tarjetasbancariases" table="tarjetasbancarias" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="t_clienteid" />
+            </key>
+            <one-to-many class="entidades.Tarjetasbancarias" />
+        </set>
+        <set name="comprasrealizadases" table="comprasrealizadas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="comp_t_id" />
+            </key>
+            <one-to-many class="entidades.Comprasrealizadas" />
+        </set>
+        <set name="clientesdireccioneses" table="clientesdirecciones" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cd_cli_id" />
+            </key>
+            <one-to-many class="entidades.Clientesdirecciones" />
+        </set>
+    </class>
+</hibernate-mapping>

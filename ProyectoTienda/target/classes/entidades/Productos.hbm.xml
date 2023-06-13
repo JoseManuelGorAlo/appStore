@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 8 feb 2023 11:39:24 by Hibernate Tools 4.3.6.Final -->
+<hibernate-mapping>
+    <class name="entidades.Productos" table="productos" catalog="empresabbdd" optimistic-lock="version">
+        <id name="proId" type="java.lang.Integer">
+            <column name="pro_id" />
+            <generator class="identity" />
+        </id>
+        <property name="proNombre" type="string">
+            <column name="pro_nombre" length="100" not-null="true" unique="true" />
+        </property>
+        <property name="proFoto" type="string">
+            <column name="pro_foto" length="100" not-null="true" unique="true" />
+        </property>
+        <property name="proDescripcion" type="string">
+            <column name="pro_descripcion" length="1000" not-null="true" />
+        </property>
+        <property name="proPrecio" type="double">
+            <column name="pro_precio" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="proStock" type="int">
+            <column name="pro_stock" not-null="true" />
+        </property>
+        <set name="carritoses" table="carritos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="car_pro_id" />
+            </key>
+            <one-to-many class="entidades.Carritos" />
+        </set>
+        <set name="clienteproductoses" table="clienteproductos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cp_pro_id" />
+            </key>
+            <one-to-many class="entidades.Clienteproductos" />
+        </set>
+        <set name="comprasrealizadases" table="comprasrealizadas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="comp_cli_id" />
+            </key>
+            <one-to-many class="entidades.Comprasrealizadas" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 8 feb 2023 11:39:24 by Hibernate Tools 4.3.6.Final -->
+<hibernate-mapping>
+    <class name="entidades.Direcciones" table="direcciones" catalog="empresabbdd" optimistic-lock="version">
+        <id name="dirId" type="java.lang.Integer">
+            <column name="dir_id" />
+            <generator class="identity" />
+        </id>
+        <property name="dirCodigoPostal" type="int">
+            <column name="dir_codigoPostal" not-null="true" />
+        </property>
+        <property name="dirLocalidad" type="string">
+            <column name="dir_localidad" length="100" not-null="true" />
+        </property>
+        <property name="dirCalle" type="string">
+            <column name="dir_calle" length="100" not-null="true" />
+        </property>
+        <property name="dirNumero" type="int">
+            <column name="dir_numero" not-null="true" />
+        </property>
+        <property name="dirPiso" type="string">
+            <column name="dir_piso" length="100" />
+        </property>
+        <property name="dirLetra" type="string">
+            <column name="dir_letra" length="1" />
+        </property>
+        <set name="clientesdireccioneses" table="clientesdirecciones" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cd_dir_id" />
+            </key>
+            <one-to-many class="entidades.Clientesdirecciones" />
+        </set>
+    </class>
+</hibernate-mapping>
